@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>TIC TAC TOE</h1>
+    <p th:text="'Player_1 = ' + ${player1} " />
+    <p th:text="'Player_2 = ' + ${player2} " />
+
+    <p>
+        <th:block th:each="board: ${board}">
+            <span th:utext="${board}"></span>
+            <span>|</span>
+        </th:block>
+    </p>
+</body>
+</html>
