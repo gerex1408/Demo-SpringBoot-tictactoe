@@ -7,7 +7,7 @@ public class Board {
 
     public Board(){
         taulell=new char[size][size];
-        fillWithSymbol('X');
+        fillWithSymbol('-');
     }
     private void fillWithSymbol(char symbol){
         for(int i=0;i<taulell.length;i++){
