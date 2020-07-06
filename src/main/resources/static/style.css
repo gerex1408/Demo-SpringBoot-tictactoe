@@ -1,6 +1,29 @@
+body{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+}
 h1{
-    color: blue;
+    font-family: 'Squada One', cursive;
+    font-size: 8rem;
+    margin: 0;
+}
+td{
+    padding: 20px;
 }
 td, table{
     border: 1px solid black;
+}
+td span{
+    font-size: x-large;
+}
+table{
+    display: inline-block;
+}
+.taula{
+    padding: 20px;
+}
+.p1{
+    padding: 20px;
 }

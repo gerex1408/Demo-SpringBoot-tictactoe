@@ -25,18 +25,21 @@ public class HomeController {
         char symbol;
         int col,fil;
         if(pos1==0){
-            symbol='O';
+            symbol=p2.getSymbol();
             col = (pos2-1)%b.getSize();
             fil= (pos2-1)/b.getSize();
         }
         else{
-            symbol='X';
+            symbol=p1.getSymbol();
             col = (pos1-1)%b.getSize();
             fil= (pos1-1)/b.getSize();
         }
         b.getTaulell()[fil][col]= symbol;
+        model.addAttribute("player1",p1);
+        model.addAttribute("player2",p2);
         model.addAttribute("board",b);
         return "index";
     }
+
 
 }
