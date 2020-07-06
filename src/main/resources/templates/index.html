@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
     <title>Title</title>
 </head>
 <body>
@@ -9,11 +10,18 @@
     <p th:text="'Player_1 = ' + ${player1} " />
     <p th:text="'Player_2 = ' + ${player2} " />
 
-    <!-- <p>
-         <th:block th:each="board: ${board}">
-             <span th:utext="${board}"></span>
-             <span>|</span>
-         </th:block>
-     </p>-->
+    <table>
+        <tbody>
+            <th:block th:each="row: ${board.getTaulell()}">
+                <tr>
+                    <th:block th:each="value:${row}">
+                        <td>
+                            <span th:text="${value}"></span>
+                        </td>
+                    </th:block>
+                </tr>
+            </th:block>
+        </tbody>
+    </table>
  </body>
  </html>
