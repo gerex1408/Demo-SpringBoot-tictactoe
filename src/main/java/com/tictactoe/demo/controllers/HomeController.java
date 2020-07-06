@@ -2,12 +2,10 @@ package com.tictactoe.demo.controllers;
 
 import com.tictactoe.demo.entities.Board;
 import com.tictactoe.demo.entities.Player;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class HomeController {
@@ -21,11 +19,22 @@ public class HomeController {
         model.addAttribute("board",b);
         return "index";
     }
-    @PutMapping("/")
-    public String  modificar_taulell(@RequestParam int pos, @RequestParam char symbol){
-        int col = (pos-1)%b.getSize();
-        int fil= (pos-1)/b.getSize();
-        b.getTaulell()[fil][col]=symbol;
+    @PostMapping("/")
+    @ResponseBody
+    public String modificar_taulell(@RequestParam(defaultValue = "0") int pos1,@RequestParam(defaultValue = "0") int pos2){
+        char symbol;
+        int col,fil;
+        if(pos1==0){
+            symbol='O';
+            col = (pos2-1)%b.getSize();
+            fil= (pos2-1)/b.getSize();
+        }
+        else{
+            symbol='X';
+            col = (pos1-1)%b.getSize();
+            fil= (pos1-1)/b.getSize();
+        }
+        b.getTaulell()[fil][col]= symbol;
         return "index";
     }
 
