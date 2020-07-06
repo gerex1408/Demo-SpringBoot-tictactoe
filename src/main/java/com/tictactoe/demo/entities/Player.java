@@ -24,7 +24,7 @@ public class Player {
 
     @Override
     public  String toString(){
-        String s = user_name + " " + symbol;
+        String s = "User Name: "+ user_name + ", Symbol: " + symbol;
         return s;
     }
 }
