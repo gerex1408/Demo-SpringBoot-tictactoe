@@ -38,5 +38,12 @@
         <input type="number" id="pos2" name="pos2" min="1" max="9">
         <input  class="btn btn-primary" type="submit" value="Submit">
     </form>
+    <div class="alerta">
+        <div  th:if="${message}" th:text="${message}" th:class="${'alert '+ alertClass}"/>
+    </div>
+
+
+
+
  </body>
  </html>

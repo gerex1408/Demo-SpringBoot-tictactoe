@@ -27,3 +27,10 @@ table{
 .p1{
     padding: 20px;
 }
+
+.alerta{
+    margin-top: 50px;
+}
+.alerta div{
+    font-weight: bolder;
+}
