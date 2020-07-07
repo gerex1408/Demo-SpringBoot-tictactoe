@@ -19,8 +19,7 @@ public class HomeController {
         return "index";
     }
     @PostMapping("/")
-    @ResponseBody
-    public void modificar_taulell(@RequestParam(defaultValue = "0") int pos1, @RequestParam(defaultValue = "0") int pos2, Model model){
+    public String modificar_taulell(@RequestParam(defaultValue = "0") int pos1, @RequestParam(defaultValue = "0") int pos2, Model model){
         char symbol;
         int col,fil;
         if(pos1==0){
@@ -34,6 +33,7 @@ public class HomeController {
             fil= (pos1-1)/b.getSize();
         }
         b.getTaulell()[fil][col]= symbol;
+        return "redirect:/";
     }
 
 
