@@ -25,6 +25,8 @@ public class HomeController {
     @PostMapping("/")
     public String modificar_taulell(@RequestParam(defaultValue = "0") int pos1, @RequestParam(defaultValue = "0") int pos2,RedirectAttributes redirectAttributes){
         char symbol;
+        int pos;
+        String player_playing;
         int col,fil;
         if(pos1==0){
             repeating2++;
@@ -32,6 +34,8 @@ public class HomeController {
             symbol=p2.getSymbol();
             col = (pos2-1)%b.getSize();
             fil= (pos2-1)/b.getSize();
+            pos=pos2;
+            player_playing=p2.getUser_name();
         }
         else{
             repeating1++;
@@ -39,8 +43,10 @@ public class HomeController {
             symbol=p1.getSymbol();
             col = (pos1-1)%b.getSize();
             fil= (pos1-1)/b.getSize();
+            pos=pos1;
+            player_playing=p1.getUser_name();
         }
-        redirectAttributes.addFlashAttribute("message", "Not your turn !");
+        redirectAttributes.addFlashAttribute("message", "Not your turn "+player_playing+ " !");
         redirectAttributes.addFlashAttribute("alertClass", "alert-danger");
         if(repeating2>=2 || repeating1>=2){
             turn=false;
@@ -49,7 +55,7 @@ public class HomeController {
             turn=true;
             return "redirect:/";
         }
-        redirectAttributes.addFlashAttribute("message", "Success");
+        redirectAttributes.addFlashAttribute("message", "Good, "+player_playing+ " placed on position "+ pos +" !");
         redirectAttributes.addFlashAttribute("alertClass", "alert-success");
         b.getTaulell()[fil][col]= symbol;
         return "redirect:/";
