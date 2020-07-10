@@ -28,12 +28,12 @@
         </table>
     </div>
 
-    <form class="p1" action="/" method="post">
+    <form class="p1" action="/game" method="post">
         <p th:text="'Player_1 = ' + ${player1.getUser_name()} " />
         <input type="number" id="pos1" name="pos1" min="1" max="9">
         <input  class="btn btn-primary" type="submit" value="Submit">
     </form>
-    <form class="p2" action="/" method="post">
+    <form class="p2" action="/game" method="post">
         <p th:text="'Player_2 = ' + ${player2.getUser_name()} " />
         <input type="number" id="pos2" name="pos2" min="1" max="9">
         <input  class="btn btn-primary" type="submit" value="Submit">

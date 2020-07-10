@@ -1,6 +1,7 @@
 package com.tictactoe.demo.controllers;
 
 import com.tictactoe.demo.entities.Board;
+import com.tictactoe.demo.controllers.RegisterController;
 import com.tictactoe.demo.entities.Player;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,20 +10,21 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class HomeController {
+    RegisterController reg=new RegisterController();
     static boolean turn=true;
     static int repeating1 = 0;
     static int repeating2 = 0;
     static Board b =new Board();
-    static Player p1 = new Player('X',"Spartan");
-    static Player p2 = new Player('O',"Gladiator");
-    @GetMapping("/")
+    Player p1 = reg.getP1();
+    Player p2 = reg.getP2();
+    @GetMapping("/game")
     public String home(Model model){
         model.addAttribute("player1",p1);
         model.addAttribute("player2",p2);
         model.addAttribute("board",b);
         return "index";
     }
-    @PostMapping("/")
+    @PostMapping("/game")
     public String modificar_taulell(@RequestParam(defaultValue = "0") int pos1, @RequestParam(defaultValue = "0") int pos2,RedirectAttributes redirectAttributes){
         char symbol;
         int pos;
@@ -53,12 +55,12 @@ public class HomeController {
         }
         if(turn==false){
             turn=true;
-            return "redirect:/";
+            return "redirect:/game";
         }
         redirectAttributes.addFlashAttribute("message", "Good, "+player_playing+ " placed on position "+ pos +" !");
         redirectAttributes.addFlashAttribute("alertClass", "alert-success");
         b.getTaulell()[fil][col]= symbol;
-        return "redirect:/";
+        return "redirect:/game";
     }
 
 
