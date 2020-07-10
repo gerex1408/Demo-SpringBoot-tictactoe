@@ -2,6 +2,7 @@ package com.tictactoe.demo.controllers;
 
 
 import com.tictactoe.demo.entities.Player;
+import com.tictactoe.demo.repository.PlayerRepository;
 import com.tictactoe.demo.service.PlayerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,8 +29,16 @@ public class RegisterController extends PlayerService{
             redirectAttributes.addFlashAttribute("username2", username2);
             p1.setUser_name(username1);
             p2.setUser_name(username2);
-            savePlayer(p1);
-            savePlayer(p2);
+            if(findPlayerByUsername(username1)==null)savePlayer(p1);
+            if(findPlayerByUsername(username2)==null)savePlayer(p2);
+            if(findPlayerByUsername(username1).getSymbol()!=p1.getSymbol()){
+                findPlayerByUsername(username1).setSymbol(p1.getSymbol());
+                savePlayer(findPlayerByUsername(username1));
+            }
+            if(findPlayerByUsername(username2).getSymbol()!=p2.getSymbol()){
+                findPlayerByUsername(username2).setSymbol(p2.getSymbol());
+                savePlayer(findPlayerByUsername(username2));
+            }
             return "redirect:/game";
         }
         if(username1.equals("")||username2.equals(""))redirectAttributes.addFlashAttribute("message","Please both enter a username");
