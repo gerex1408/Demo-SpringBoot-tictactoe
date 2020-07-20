@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Squada+One&display=swap" rel="stylesheet">
+    <title>Register-TicTacToe</title>
+</head>
+<body class="reg_body">
+
+    <h2>Set your usernames !</h2>
+    <form class="register" action="/" method="post">
+        <input autocomplete="off" type="text" id="username1" name="username1" min="3" max="15" placeholder="Player1">
+        <input autocomplete="off" type="text" id="username2" name="username2" min="3" max="15" placeholder="Player2">
+        <input id="boton" class="btn btn-primary" type="submit" value="Submit">
+    </form>
+
+    <div class="alerta">
+        <div  th:if="${message}" th:text="${message}" th:class="${'alert alert-danger'}"/>
+    </div>
+</body>
+</html>
