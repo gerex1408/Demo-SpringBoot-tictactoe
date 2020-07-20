@@ -1,7 +1,6 @@
 package com.tictactoe.demo.controllers;
 
 import com.tictactoe.demo.entities.Board;
-import com.tictactoe.demo.controllers.RegisterController;
 import com.tictactoe.demo.entities.Player;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

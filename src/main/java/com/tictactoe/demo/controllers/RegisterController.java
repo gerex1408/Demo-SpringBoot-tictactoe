@@ -2,7 +2,6 @@ package com.tictactoe.demo.controllers;
 
 
 import com.tictactoe.demo.entities.Player;
-import com.tictactoe.demo.repository.PlayerRepository;
 import com.tictactoe.demo.service.PlayerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
