@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Editor</title>
+    <script src="https://cdn.quilljs.com/1.1.3/quill.js"></script>
+    <script src="https://cdn.quilljs.com/1.1.3/quill.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Squada+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://cdn.quilljs.com/1.1.3/quill.snow.css" rel="stylesheet">
+    <link href="https://cdn.quilljs.com/1.1.3/quill.bubble.css" rel="stylesheet">
+
+
+</head>
+<body>
+    <div id="toolbar"></div>
+    <input autocomplete="off" type="text" id="title" placeholder="Title">
+    <input autocomplete="off" type="text" id="unic_title" placeholder="Unic Title" >
+    <div id="editor"></div>
+    <input id="save" name="submit" type="submit" value="SUBMIT">
+
+
+    <script>
+        var toolbarOptions = [
+            ['bold','italic','underline','strike'],
+            ['blockquote', 'code-block'],
+            [{'header': [1,2,3,4,5,6,false]}],
+            [{'list':'ordered'},{'list':'bullet'}],
+            ['image','video'],
+            [{'color':[]},{'background':[]}]
+        ]
+        var quill = new Quill('#editor',{
+            modules:{
+                toolbar:toolbarOptions
+            },
+            theme:'snow'
+        })
+        $('#save').click(function () {
+            const editor = document.getElementById('editor').children[1]
+            editor.removeAttribute('class');
+            editor.removeAttribute('contenteditable');
+            editor.removeAttribute('tabindex');
+            console.log(editor);
+            const unic_title=document.getElementById('unic_title').value;
+            const title=document.getElementById('title').value;
+            $.ajax({
+                url:"/edition",
+                type:"POST",
+                data:JSON.stringify({
+                    title:title,
+                    content: editor.outerHTML,
+                    unicTitle: unic_title
+                }),
+                contentType:"application/json; charset=utf-8",
+                dataType:"json",
+                success: (data,status)=>{
+                    console.log(data);
+                    console.log(status);
+                }
+            })
+        })
+    </script>
+</body>
+</html>
